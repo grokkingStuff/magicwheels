@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?> 
+<?xml-stylesheet href="latex-W1zI8K.css" type="text/css"?> 
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="228.49295pt" height="169.06636pt" viewBox="-114.24648 -47.87477 228.49295 169.06636 "> 
+<g transform="translate(0, 121.19159 ) scale(1,-1) translate(0,47.87477 )"> 
+                                  <g stroke="#000" fill="#000">
+ <g stroke-width="0.4">
+ <path d=" M 0.0 0.0 L 105.06854 -38.24226  " fill="none"/>
+ <g transform="matrix(0.93968,-0.34201,0.34201,0.93968,105.06854,-38.24226)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(102.98225,-33.89333)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.96562,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">i</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">1</tspan></tspan></g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 0.0 0.0 L -105.06854 -38.24226  " fill="none"/>
+ <g transform="matrix(-0.93968,-0.34201,0.34201,-0.93968,-105.06854,-38.24226)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(-110.9135,-33.89333)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.96562,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">i</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">2</tspan></tspan></g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 0.0 0.0 L 0.0 111.81104  " fill="none"/>
+ <g transform="matrix(0.0,1.0,-1.0,0.0,0.0,111.81104)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(-11.46422,111.26337)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.96562,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">i</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">3</tspan></tspan></g> </g>
+ </text> 
+</g>
+ </g>
+ <g stroke-dasharray="3.0,3.0" stroke-dashoffset="0.0">
+ <path d=" M 0.0 0.0 L 75.62366 -47.67477 L 75.62366 66.13623  " fill="none"/>
+ </g>
+ <g stroke-width="1.2">
+ <path d=" M 0.0 0.0 L 73.21498 64.02974  " fill="none"/>
+ <g transform="matrix(0.75272,0.65828,-0.65828,0.75272,73.21497,64.02974)">
+ <path d=" M 3.2 0.0 L -1.92 2.56 L 0.0 0.0 L -1.92 -2.56  " stroke="none"/>
+  </g>
+ </g>
+ <path d=" M -51.5946 -20.14714 C -29.27457 -28.27107 8.1742 -30.06543 35.85468 -24.24863  " fill="none"/>
+ <g transform="matrix(-0.93968,0.34201,-0.34201,-0.93968,-51.5946,-20.14714)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="matrix(0.97859,0.20563,-0.20563,0.97859,35.85468,-24.24864)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(-13.08752,-35.12685)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.21701,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">&#x03B1;</tspan> </g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 30.249 -17.06964 C 30.249 -6.99823 27.06096 6.59464 22.23744 16.89471  " fill="none"/>
+ <g transform="matrix(0.0,-1.0,1.0,0.0,30.249,-17.06964)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="matrix(-0.42409,0.9056,-0.9056,-0.42409,22.23744,16.89471)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(31.47829,-3.66945)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(2.41145,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">&#x03B4;</tspan> </g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 75.62366 66.13623 L 104.60571 90.45544  " fill="none"/>
+ <g transform="matrix(0.76602,0.64278,-0.64278,0.76602,104.60571,90.45544)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(102.30438,96.77393)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.83334,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">l</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">1</tspan> </tspan> </g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 75.62366 66.13623 L 42.85858 85.05312  " fill="none"/>
+ <g transform="matrix(-0.86601,0.49998,-0.49998,-0.86601,42.8586,85.05312)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(37.29324,91.08603)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.83334,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">l</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">2</tspan> </tspan> </g> </g>
+ </text> 
+</g>
+ </g>
+ <path d=" M 75.62366 66.13623 L 65.83156 102.68085  " fill="none"/>
+ <g transform="matrix(-0.25882,0.96591,-0.96591,-0.25882,65.83156,102.68085)">
+ <path d=" M 1.99997 0.0 L -1.19998 1.59998 L 0.0 0.0 L -1.19998 -1.59998  " stroke="none"/>
+  </g>
+ <g transform="translate(54.11427,101.89041)">
+ <g fill="#000">
+ <text style="stroke:none" transform="scale(1,-1) translate(3.83334,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#000">
+ <g stroke="none"> <tspan font-family="cmmi" font-size="10">l</tspan><tspan baseline-shift="sub"><tspan font-family="cmr" font-size="7">3</tspan> </tspan> </g> </g>
+ </text> 
+</g>
+ </g>
+ <g stroke-width="0.4">
+ <path d=" M 81.72635 71.25708 L 74.82706 75.24039 L 68.72437 70.11954  " fill="none"/>
+ </g>
+ </g>
+ </g>
+ 
+                                                                                     </g> 
+</svg> 

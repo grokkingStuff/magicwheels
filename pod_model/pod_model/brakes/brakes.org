@@ -1,0 +1,19 @@
+#+TITLE: Brakes
+#+AUTHOR: Tarun Nadimpalli & Vishakh Kumar
+
+
+There will be a pneumatic double-acting cylinder with a piston that provides the braking force.
+The brake pad will be added to the bottom of the piston.
+When there is no pressure, the piston is fully extended and the brake is engaged to the track.
+When pressure is added to the air cylinder, the brake releases and the piston retracts.
+In case of power failure, the pressure from the air cylinder will be released immediately (through an escape valve that is normally open, but is closed when the pod is moving and has power), and the brake will re-engage with the track.
+Right now, we are going to have 4 total brakes (eight cylinders with 4 on top of the rail and 4 on the bottom).
+The pressure for the cylinders will all be provided by one pressure tank.
+Right now, we are estimating each of the 8 cylinders with pad will occupy a space of about 128 cubic inches or .0021 cubic meters (16 square inches area, 8 inches height) and weigh 2 lbs.
+
+If we want to control the speed of pod, then we would need to control the amount of braking force exerted, which would be mean controlling the pressure.
+I don't know for sure if its required, but I think someone mentioned they wanted it.
+Last year, we included it.
+Right now we are assuming a coefficient of .45, but that might change after thermal simulations.
+We calculated a pressure exertion of 65 psi for each cylinder.
+

@@ -1,0 +1,31 @@
+\tikzset{
+  > = {stealth},
+  % specifying distances in cm puts them in the paper coordinates,
+  % without units puts them in these tikz xy(z) coordinates
+  inertial frame/.style = {x={(-20:2cm)}, y={(-160:2cm)}, z={(90:2cm)}},
+  local frame/.style = {shift={(local origin)}, x={(40:.7cm)}, y={(150:.7cm)}, z={(105:.7cm)}}
+}
+
+\begin{tikzpicture}[scale=2, inertial frame]
+  % draw axes
+  \draw[->] (0,0,0) -- (1,0,0) node[above] {$i_1$};
+  \draw[->] (0,0,0) -- (0,1,0) node[above] {$i_2$};
+  \draw[->] (0,0,0) -- (0,0,1) node[left] {$i_3$};
+  % draw dashed lines and set the coordinate (local origin) which is used in the local frame style
+  \draw[dashed] (0,0,0) -- ++(15:1) coordinate (projection) -- ++(0,0,1) coordinate (local origin);
+
+  \draw[very thick, ->] (0,0,0) -- (local origin);
+  \draw[<->] (90:.5) arc (90:15:.5) node[below, pos=.5] {$\alpha$};
+  % arcs are drawn in the x-y plane, so locally set x and y to an orthonormal basis to the desired plane
+  \draw[y={(0,0,1)}, x={(projection)}, <->] (0:.4) arc (0:45:.4) node[right, pos=.5] {$\delta$};
+
+  \begin{scope}[local frame]
+    % draw local axes
+    \draw[->] (0,0,0) -- (1,0,0) node[above] {$l_1$};
+    \draw[->] (0,0,0) -- (0,1,0) node[above] {$l_2$};
+    \draw[->] (0,0,0) -- (0,0,1) node[left] {$l_3$};
+    % draw right angle
+    \draw[thin] (.2,0,0) -- (.2,.2,0) -- (0,.2,0);
+  \end{scope}
+
+\end{tikzpicture}

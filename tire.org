@@ -1,0 +1,81 @@
+#+TITLE: Tire Models
+#+AUTHOR: Vishakh Pradeep Kumar
+
+
+So your car might be the fanciest in the world but it still depends on four relatively small tyre contact patches.
+
+We're gonna be ignoring the tread pattern for now because that is *way* too complicated. Damn it +Jim+ Life, I'm a +doctor+ plane guy not a car guy.
+
+To make matters more interesting, these tyre models are really this mix between proper theoretical models and empirical models - your model might be well-used and simple but always take care to state your assumptions
+
+* Stalking 
+
+Formula Student Competition run by IMechE and takes place at SilverStone.
+
+
+* Tyre Axis Frames & Geometry
+** SAE J2047
+
+So this tire frame is kind of a classic that a lot of textbooks use. While I could use a newer one (like ISO 8855), I'm gonna stick to the one I have since it's really similar but has switched signs. 
+
+Latest reference of SAE J2047 is available at https://www.sae.org/standards/content/j2047_201911/
+
+Right off the bat, they tell you it's got a bunch of previous versions. We're using the latest one 
+
+#+begin_src emacs-lisp :exports none :results silent
+  (setq org-babel-latex-htlatex "htlatex")
+  (defmacro by-backend (&rest body)
+    `(case org-export-current-backend ,@body))
+#+end_src
+
+X axis is the intersection of the wheel plane and the road plane with the positive direction taken for the wheel moving forward.
+Z axis is perpendicular to the road plane with a positive direction assumed to be acting downwards.
+Y axis is in the road plane and its direction is dictated by the use of a right-handed orthogonal axis frame
+The angles \alpha & \gamma represent the slip angle and camber angle respectively.
+
+#+LaTeX_header: \usepackage{tikz} \usetikzlibrary{positioning, shapes.symbols, calc} \usepackage{svg}
+#+name: mytikzpicture
+#+header: :file (by-backend (html "saej2047.svg") (latex "saej2047.svg") (beamer "saej2047.svg") (t "saej2047.svg"))
+#+header: :imagemagick (by-backend (html 'nil) (latex 'nil) (beamer 'nil) (t "t"))
+#+header: :results (by-backend (latex "silent") (beamer "silent") (t "silent"))
+#+header: :fit yes :border 0cm
+#+header: :iminoptions -density 600 :imoutoptions -geometry 900
+#+begin_src latex :tangle saej2047.tikz
+\tikzset{
+  > = {stealth},
+  % specifying distances in cm puts them in the paper coordinates,
+  % without units puts them in these tikz xy(z) coordinates
+  inertial frame/.style = {x={(-20:2cm)}, y={(-160:2cm)}, z={(90:2cm)}},
+  local frame/.style = {shift={(local origin)}, x={(40:.7cm)}, y={(150:.7cm)}, z={(105:.7cm)}}
+}
+
+\begin{tikzpicture}[scale=2, inertial frame]
+  % draw axes
+  \draw[->] (0,0,0) -- (1,0,0) node[above] {$i_1$};
+  \draw[->] (0,0,0) -- (0,1,0) node[above] {$i_2$};
+  \draw[->] (0,0,0) -- (0,0,1) node[left] {$i_3$};
+  % draw dashed lines and set the coordinate (local origin) which is used in the local frame style
+  \draw[dashed] (0,0,0) -- ++(15:1) coordinate (projection) -- ++(0,0,1) coordinate (local origin);
+
+  \draw[very thick, ->] (0,0,0) -- (local origin);
+  \draw[<->] (90:.5) arc (90:15:.5) node[below, pos=.5] {$\alpha$};
+  % arcs are drawn in the x-y plane, so locally set x and y to an orthonormal basis to the desired plane
+  \draw[y={(0,0,1)}, x={(projection)}, <->] (0:.4) arc (0:45:.4) node[right, pos=.5] {$\delta$};
+
+  \begin{scope}[local frame]
+    % draw local axes
+    \draw[->] (0,0,0) -- (1,0,0) node[above] {$l_1$};
+    \draw[->] (0,0,0) -- (0,1,0) node[above] {$l_2$};
+    \draw[->] (0,0,0) -- (0,0,1) node[left] {$l_3$};
+    % draw right angle
+    \draw[thin] (.2,0,0) -- (.2,.2,0) -- (0,.2,0);
+  \end{scope}
+
+\end{tikzpicture}
+#+END_src
+
+\begin{figure}[!ht]
+ \centering
+ \includesvg[width=0.5\columnwidth, svgpath = ./]{saej2047}
+\end{figure}
+

@@ -1,0 +1,66 @@
+% Created 2019-12-02 Mon 19:32
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{tikz} \usetikzlibrary{positioning, shapes.symbols, calc} \usepackage{svg}
+\author{Vishakh Pradeep Kumar}
+\date{\today}
+\title{Tire Models}
+\hypersetup{
+ pdfauthor={Vishakh Pradeep Kumar},
+ pdftitle={Tire Models},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+So your car might be the fanciest in the world but it still depends on four relatively small tyre contact patches.
+
+We're gonna be ignoring the tread pattern for now because that is \textbf{way} too complicated. Damn it \sout{Jim} Life, I'm a \sout{doctor} plane guy not a car guy.
+
+To make matters more interesting, these tyre models are really this mix between proper theoretical models and empirical models - your model might be well-used and simple but always take care to state your assumptions
+
+\section{Stalking}
+\label{sec:org1915446}
+
+Formula Student Competition run by IMechE and takes place at SilverStone.
+
+
+\section{Tyre Axis Frames \& Geometry}
+\label{sec:org63424fa}
+\subsection{SAE J2047}
+\label{sec:org3632628}
+
+So this tire frame is kind of a classic that a lot of textbooks use. While I could use a newer one (like ISO 8855), I'm gonna stick to the one I have since it's really similar but has switched signs. 
+
+Latest reference of SAE J2047 is available at \url{https://www.sae.org/standards/content/j2047\_201911/}
+
+Right off the bat, they tell you it's got a bunch of previous versions. We're using the latest one 
+
+X axis is the intersection of the wheel plane and the road plane with the positive direction taken for the wheel moving forward.
+Z axis is perpendicular to the road plane with a positive direction assumed to be acting downwards.
+Y axis is in the road plane and its direction is dictated by the use of a right-handed orthogonal axis frame
+The angles \(\alpha\) \& \(\gamma\) represent the slip angle and camber angle respectively.
+
+\begin{figure}[!ht]
+ \centering
+ \includesvg[width=0.5\columnwidth, svgpath = ./]{saej2047}
+\end{figure}
+\end{document}

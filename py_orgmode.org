@@ -1,0 +1,173 @@
+#+TITLE: Modules to enhance Python for use in org-mode
+
+Redirect stderr to stdout for use in Emacs + orgmode
+
+
+1. Because I don't really like opening up a new buffer to see something.
+2. Modify matplotlib.pyplot.savefig and show
+3. Provide table and figure commands that generate org-markup.
+4. Provide functions that generate org markup, e.g. results, comments,
+headlines and links.
+
+
+
+
+* Sparklines
+
+I really like Edward Tufte's idea of sparklines. I know there are plenty of command-line libraries out there (and I should probably just pipe stuff in and out) but I honestly like doing it as a lisp macro.
+Nothing like ASCII art to get a smile on your face and I can quickly add pngs in my org-mode notebooks.
+
+This particular version takes in any 1D data like lists, numpy arrays or pandas series and creates a little png that you can embed in your text. I personally don't like bars but it's the best option if you're limited to a terminal. Personally, I prefer really tiny Matplotlib graphs that can be safely embedded in text.
+
+ For convenience, I also add a little Lisp Macro in my notebooks so that I can pull create identifiers that my Python code can then update images to.
+
+Although Emacs stores all images in the local ~img~ folder, I prefer keeping my sparklines in a separate folder ~sparklines~. Easier to delete when necessary. Also, it's just a little neater? I dunno.
+
+
+#+BEGIN_SRC haskell
+import Data.List.Split (splitOneOf)
+import Data.List (findIndex)
+import Data.Maybe (maybe)
+import Control.Arrow ((&&&))
+ 
+sparkLine :: [Float] -> String
+sparkLine xs =
+  let (mn, mx) = (minimum &&& maximum) xs
+      w = (mx - mn) / 8
+      lbounds = ((mn +) . (w *)) <$> [1 .. 7]
+  in fmap (maybe '█' ("▁▂▃▄▅▆▇" !!) . flip findIndex lbounds . flip (>)) xs
+#+END_SRC
+
+#+BEGIN_SRC elisp
+
+;; Common Lisp import in Elisp.
+;; Unlike cl.el, everything is prefixed with cl
+(require 'cl-lib)
+
+;; Unicode characters allow us to create "box" characters.
+;; In total, we have 8 such boxes ▁▂▃▄▅▆▇█
+
+(defun sparkline (numbers)
+    "Create sparklines"
+    (let* (
+         (max_number   (cl-loop for el in numbers maximize el))  ;; Find maximum value in the list
+         (min_number   (cl-loop for el in numbers minimize el))  ;; Find minimum value in the list
+         (width ( / (- max_number min_number) 7.0)            )  ;; Find width of each bin
+         (lower_bounds (cl-mapcar (lambda (x) 
+                                          (+ (* width x) min_number)) 
+                                  '(1 2 3 4 5 6 7) )          )  ;; Find lower bounds
+                                                                 
+;;         (lower_bounds (cl-map (lambda (x) (* width x)) '(1 2 3 4 5 6 7)))  ;; Assign a bin to each number 
+         )
+         (list max_number min_number width lower_bounds)
+    )
+;;    (message "Hello")
+)
+
+
+(sparkline '(1 2 3))
+#+END_SRC
+
+#+RESULTS:
+| 3 | 1 | 0.2857142857142857 | (1.2857142857142856 1.5714285714285714 1.8571428571428572 2.142857142857143 2.4285714285714284 2.7142857142857144 3.0) |
+
+
+#+BEGIN_SRC lisp
+
+  ;; sparkline.lisp
+ 
+
+ 
+  ;; Common Lisp import in Elisp.
+  ;; Unlike cl.el, everything is prefixed with cl
+  ;;(require 'cl-lib)
+
+  ;; Unicode characters allow us to create "box" characters.
+  ;; In total, we have 8 such boxes ▁▂▃▄▅▆▇█
+ 
+  (defun buckets-definitions (numbers)
+    "buckets takes in a list of data and converts it into ranges for bins. Given that we only have 8 box characters, we stuff everything into 8 bins."
+    (loop with min = (apply #'min numbers)
+          with max = (apply #'max numbers)
+          with width = (/ (- max min) 7)
+          for base from (- min (/ width 2)) by width
+          repeat 8
+          collect (cons base (+ base width))))
+ 
+  (defun bucket-for-number (number buckets)
+    "Given a number and the list of 'buckets' we did earlier, give the number a bin number"
+    (loop for i from 0
+          for (min . max) in buckets
+          when (and (<= min number) (< number max))
+            return i))
+ 
+  (defun sparkline (numbers)
+    (loop with buckets = (buckets-definitions numbers)
+          with sparks = "▁▂▃▄▅▆▇█"
+          ;; Take the list you've got convert it into an array.
+          with sparkline = (make-array (length numbers) :element-type 'character)
+          ;;with min = (apply #'min numbers)
+          ;;with max = (apply #'max numbers)
+          for number in numbers
+          for i from 0
+          for bucket = (bucket-for-number number buckets)
+          do (setf (aref sparkline i) (char sparks bucket))
+          finally (write-line sparkline)
+    )
+  )
+ 
+  (defun string->numbers (string)
+    (flet ((delimiterp (c)
+             (or (char= c #\Space) (char= c #\,))))
+      (loop for prev-end = 0 then end
+            while prev-end
+            for start = (position-if-not #'delimiterp string :start prev-end)
+            for end = (position-if #'delimiterp string :start start)
+            for number = (read-from-string string t nil :start start :end end)
+            do (assert (numberp number))
+            collect number)))
+ 
+  (defun string->sparkline (string)
+    (sparkline (string->numbers string)))
+
+  (string->sparkline "1 2 3 4 5 6 7 8 7 6 5 4 3 2 1")
+  (string->sparkline "1.5, 0.5, 3.5, 2.5, 5.5, 4.5, 7.5, 6.5")
+#+END_SRC
+
+#+RESULTS:
+: NIL
+
+
+
+#+BEGIN_SRC python :eval no
+
+
+
+BARS = u'▁▂▃▅▆▇'
+
+
+import sys
+
+data = sys.argv[1:] or sys.stdin.read().split()
+data = (x.strip() for x in data)
+data = [float(x) for x in data if x]
+incr = min(data)
+width = (max(data) - min(data)) / (len(BARS) - 1)
+bins = [i*width+incr for i in range(len(BARS))]
+indexes = [i for n in data
+           for i, thres in enumerate(bins)
+           if thres <= n < thres+width]
+print ''.join(BARS[i] for i in indexes)
+
+
+
+
+
+#+END_SRC
+
+
+
+
+
+
+

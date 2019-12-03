@@ -1,0 +1,85 @@
+#+TITLE: Cylinder
+#+AUTHOR: Tarun Nadimpalli & Vishakh Kumar
+
+
+To calculate the force exertion, you need the bore diameter and piston diameter of the cylinder.
+
+<Insert latex here?>
+
+[[file:image.png][Diagram of cylinder]]
+
+#+NAME: cylinderProperties
+#+CAPTION: Properties of an individual braking cylinder
+| Name            | Numerical Quantity | USCS Units | SI Units | Conversion Ratio | SI Quantity |
+|-----------------+--------------------+------------+----------+------------------+-------------|
+| Bore Diameter   |                  2 | in         | m        |           0.0254 |      0.0508 |
+| Piston Diameter |              0.625 | in         | m        |           0.0254 |    0.015875 |
+| Guage Pressue   |                108 | psi        | Pa       |          6894.76 |   744634.08 |
+| Mass            |                  2 | lbs        | kg       |         0.453592 |    0.907184 |
+#+TBLFM: $6=$2*$5
+
+#+BEGIN_SRC python :tangle cylinder.py
+from openmdao.api import ExplicitComponent
+import numpy as np
+class Cylinder(ExplicitComponent):
+    """Aeroshell of the pod"""
+
+    def initialize(self):
+       """Declare options"""
+    
+        # Need to convert this to an input at some point
+        self.options.declare('Mass', 
+                             default=0.907184,
+                             types=np.ScalarType,
+                             desc='Mass of the Friction Pad')
+        self.options.declare('BoreDiameter',
+                             default=0.0508,
+                             types=np.ScalarType,
+                             desc="Diameter of the bore cylinder")
+        self.options.declare('PistonDiameter',
+                             default=0.015875,
+                             types=np.ScalarType,
+                             desc="Diameter of the bore cylinder")
+
+    def setup(self):
+        """ Define inputs and ouputs"""
+        
+        # Inputs
+        self.add_input('AtmosphericPressure',
+                       default=1000.,                                   # Tube pressure
+                       types=np.ScalarType,
+                       desc="Pressure on the spring side of the pull action pneumatic cylinder")
+        self.add_input('GuagePressure',
+                       default=0,
+                       types=np.ScalarType,
+                       desc="Pressure on the non-spring side of the pull action pneumatic cylinder")
+
+        # Outputs
+        self.add_output('Force',
+                        default=0.,
+                        types=np.ScalarType,
+                        desc="Force exerted by the pneumatic cylinder")
+    def compute(self, inputs, outputs):
+        """Compute outputs"""
+        
+        # Relevant Diameters
+        d_b = self.options["BoreDiameter"]
+        d_p = self.options["PistonDiameter"]
+
+        # 
+        # Force applied to the friction pad
+        normal = inputs["NormalForce"]
+        
+        friction = c_f * normal
+
+        outputs["FrictionForce"] = friction
+
+    def compute_partials(self,inputs,partials):
+        """Computation of partial derivatives"""
+        
+        c_f = self.options["FrictionCoefficient"]
+        
+         partials["FrictionForce","NormalForce"] = c_f
+#+END_SRC
+
+#+RESULTS:

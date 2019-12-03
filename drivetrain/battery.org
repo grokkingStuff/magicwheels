@@ -1,0 +1,35 @@
+#+TITLE: Electric vehicle battery
+
+
+TL;DR
+
+Electric Vehichle batteries are used to power the actual propulsion of an electric vehicle.
+
+- High ampere-hour capacity
+- Give power over sustained periods of time
+- High Power-to-weight ratio
+- Specific Energy
+- Energy Density
+
+The amount of electricity (i.e. electric charge) stored in batteries is measured in ampere hours or in coulombs, with the total energy often measured in watt hours. 
+
+
+Most common battery types are lithium-ion and lithium polymer.
+These are also the most finicky of battery types so do use some kind of BMS system to make it work and not blow up. Usually involves some kind of monitoring the discharge curve with some relays and a lot of panic regarding thermal runaway.
+
+* Charging
+
+Charging is a proper pain in the ass since we could just pump our batteries full of current but the grid that we run off on kinda limits how much we can do (boooo). And while there are plenty of clever ways to get around this, it still is annoying to have to keep your car stationary for half an hour to charge when your average petrol car can be filled up pretty quickly. Even with super quick charging, the best-ish estimates are 15 minutes to 80%.
+
+Fun History Fact: F1 cars used to be refilled at pit stops but that was banned in 2010. Turns out that highly pressurized fuel, hasty humans and really hot conditions kinda don't go well together.
+
+One way to get by this is to just switch batteries. Doing this would increase the number of pitstops and make connectors a little harder but would probably be a lot more effective at getting cheap batteries that have a higher power density as opposed to a high capacity. 
+
+
+
+
+
+
+
+
+
